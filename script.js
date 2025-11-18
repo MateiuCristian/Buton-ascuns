@@ -11,18 +11,9 @@ function setCorrectButton(noButtons) {
 }
 
 function checkButton(currentButton, correctButton) {
-    console.log(currentButton);
+    console.log(currentButton); 
     console.log(correctButton);
-   // div = document.createElement("div");
-   // div.remove();
-   // console.log(currentButton.id, correctButton.id);
-   // if (currentButton.id == correctButton.id) {
-       // console.log("Correct button");
-       // div.appendChild(document.createTextNode("Correct button!"));
-   // } else {
-       // console.log("Incorrect button");
-       // div.appendChild(document.createTextNode("Correct button!"));
-   // }
+    // ...
 }
 
 function getButton(buttonId) {
@@ -31,10 +22,10 @@ function getButton(buttonId) {
 
 function checkTableButtons(noButtons) {
     correctButton = getButton(setCorrectButton(noButtons).toString());
+    currentButtons = new Array(noButtons + 1);
     for (i = 1; i <= noButtons; ++i) {
-        currentButton = getButton(i.toString());
-        currentButton.addEventListener("click", function() {checkButton(currentButton, correctButton);});
-      //  console.log(currentButtons[i]);
+        currentButtons[i] = getButton(i.toString());
+        currentButtons[i].addEventListener("click", function() {checkButton(currentButtons[i], correctButton);});
     }
 }
 
