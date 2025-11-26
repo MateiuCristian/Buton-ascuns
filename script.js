@@ -11,21 +11,18 @@ function setCorrectButton(noButtons) {
 }
 
 function checkButton(currentButton, correctButton) {
-    console.log(currentButton); 
-    console.log(correctButton);
-    // ...
-}
-
-function getButton(buttonId) {
-    return document.getElementById(buttonId);
+    console.log("Current button:", currentButton, "Correct button:", correctButton);
+    //if (currentButton == correctButton) {
+        //console.log("Buton corect");
+    //} else {
+        //console.log("buton gresit");
+    //}
 }
 
 function checkTableButtons(noButtons) {
-    correctButton = getButton(setCorrectButton(noButtons).toString());
-    currentButtons = new Array(noButtons + 1);
+    correctButtonId = setCorrectButton(noButtons);
     for (i = 1; i <= noButtons; ++i) {
-        currentButtons[i] = getButton(i.toString());
-        currentButtons[i].addEventListener("click", function() {checkButton(currentButtons[i], correctButton);});
+        document.getElementById(i).addEventListener("click", function() {checkButton(i, correctButtonId);});   
     }
 }
 
