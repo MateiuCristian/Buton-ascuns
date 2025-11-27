@@ -22,7 +22,7 @@ function checkButton(currentButton, correctButton) {
 function checkTableButtons(noButtons) {
     correctButtonId = setCorrectButton(noButtons);
     for (i = 1; i <= noButtons; ++i) {
-        document.getElementById(i).addEventListener("click", function() {checkButton(i, correctButtonId);});   
+        document.getElementById(i).addEventListener("click", function() {console.log(i, correctButtonId); checkButton(i, correctButtonId);});   
     }
 }
 
