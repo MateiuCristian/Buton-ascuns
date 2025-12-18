@@ -11,28 +11,28 @@ function setCorrectButton(noButtons) {
 }
 
 function checkButton(currentButton, correctButton) {
-    console.log("Current button:", currentButton, "Correct button:", correctButton);
-    //if (currentButton == correctButton) {
-        //console.log("Buton corect");
-    //} else {
-        //console.log("buton gresit");
-    //}
+    console.log("current button:", currentButton, "correct button:", correctButton);
+    // ...
 }
 
 function checkTableButtons(noButtons) {
     correctButtonId = setCorrectButton(noButtons);
-    for (i = 1; i <= noButtons; ++i) {
-        document.getElementById(i).addEventListener("click", function() {console.log(i, correctButtonId); checkButton(i, correctButtonId);});   
+    for (let i = 1; i <= noButtons; ++i) { // daca nu as mai pune let si as lasa doar i atunci pentru fiecare buton apasat se va afisa valoarea n + 1
+        document.getElementById(i.toString()).addEventListener("click",
+            function() {
+                checkButton(i, correctButtonId);
+        });   
     }
 }
 
 function generateTableAndButtons(noButtons) {
+    divTable = document.createElement("div");
     table = document.createElement("table");
     tableBody = document.createElement('tbody');
     buttonsCounter = 0;
-    for (i = 1; i <= 10 && buttonsCounter < noButtons; ++i) {
+    for (var i = 1; i <= 10 && buttonsCounter < noButtons; ++i) {
         row = document.createElement("tr");
-        for (j = 1; j <= 10 && buttonsCounter < noButtons; ++j) {
+        for (var j = 1; j <= 10 && buttonsCounter < noButtons; ++j) {
             col = document.createElement("td");
             colButton = document.createElement("button");
             ++buttonsCounter;
@@ -45,6 +45,7 @@ function generateTableAndButtons(noButtons) {
         tableBody.appendChild(row);
     }
     table.appendChild(tableBody);
-    document.body.appendChild(table);
+    divTable.appendChild(table);
+    document.body.appendChild(divTable);
     checkTableButtons(noButtons);
 }
