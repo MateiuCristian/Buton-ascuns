@@ -1,7 +1,3 @@
-function getText(id) {
-    return Number(document.getElementById(id).value);
-}
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -30,31 +26,24 @@ function checkTableButtons(noButtons) {
     }
 }
 
-function generateTableAndButtons(noButtons) {
-    let divTable = document.createElement("div");
+function generateTable(noButtons) {
     let table = document.createElement("table");
-    let tableBody = document.createElement("tbody");
-    let buttonsCounter = 0;
-    for (let i = 1; i <= 10 && buttonsCounter < noButtons; ++i) {
-        let row = document.createElement("tr");
-        for (let j = 1; j <= 10 && buttonsCounter < noButtons; ++j) {
-            let col = document.createElement("td");
-            let colButton = document.createElement("button");
-            ++buttonsCounter;
-            colButton.id = buttonsCounter.toString();
-            colButton.className = "btn btn-primary";
-            colButton.textContent = buttonsCounter;
-            col.appendChild(colButton);
-            row.appendChild(col);
+    let tableRow = 0;
+    for (let buttonId = 1; buttonId <= noButtons; ++buttonId) {
+        if (buttonId % 10 == 1) {
+            tableRow = table.insertRow();
         }
-        tableBody.appendChild(row);
+        let newCell = tableRow.insertCell();
+        let newButton = document.createElement('button');
+        newButton.id = buttonId.toString();
+        newButton.className = 'btn btn-primary';
+        newButton.textContent = buttonId;
+        newCell.appendChild(newButton);
     }
-    table.appendChild(tableBody);
-    divTable.appendChild(table);
-    document.body.appendChild(divTable);
+    document.body.appendChild(table);
 }
 
 function clickFunc(noButtons) {
-    generateTableAndButtons(noButtons);
+    generateTable(noButtons);
     checkTableButtons(noButtons);
 }
